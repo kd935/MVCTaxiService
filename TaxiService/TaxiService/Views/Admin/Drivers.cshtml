@@ -1,0 +1,140 @@
+﻿@model DriversViewModel
+
+<div class="row min-vh-100 page-main-row text-light">
+    <div class="col-6 offset-3 mt-5 px-0">
+        
+        <div class="form-row mx-0">
+                <div class="col-9 radio-buttons-wrap px-0">
+                    <div class="form-row d-flex justify-content-around mx-0">
+                        @foreach (var driverStatus in Model.DriverStatuses)
+                        {
+                            <div>
+                                <input type="radio" asp-for="DriverStatus" value="@driverStatus" />@driverStatus<br />
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-row d-flex mx-0 mt-2">
+
+                        @foreach (var vehicleType in Model.VehcileTypes)
+                        {
+                            <div class="flex-fill d-flex justify-content-center align-items-center">
+                                <input type="radio" asp-for="VehicleType" value="@vehicleType" />@vehicleType<br />
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-2 offset-1 px-0 d-flex" >
+                    <div class="flex-grow-1 d-flex">
+                        <a id="cleanButton" href="#" class="clean-button btn btn-success flex-grow-1 d-flex align-items-center justify-content-center">Очистить</a>
+                    </div>
+                </div>
+            </div>
+        
+        <div id="tablediv" class="form-row mt-3 mx-0 d-flex flex-column min-vh-100"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+    $('input[type="radio"]').on('click', function(e)
+    {
+        var value = e.target.getAttribute('value')
+        var name = e.target.getAttribute('name')
+        $("#tablediv").load("@Url.Action("DriversRadioButtonHandler","Admin")", { 'id' : name + " " + value},
+                                        function (response, status, xhr)
+        {
+            if (status == "error")
+            {
+                alert("An error occurred while loading the results.");
+            }
+        });
+    });
+});
+
+$(document).ready(function()
+{
+        var checkedRadioButtons = document.querySelectorAll('[checked]')
+    if (checkedRadioButtons && checkedRadioButtons.length) {
+        return 
+        }
+      
+        $("#tablediv").load("@Url.Action("DriversRadioButtonHandler","Admin")", { 'id' : ''},
+                                    function (response, status, xhr)
+    {
+        if (status == "error")
+        {
+            alert("An error occurred while loading the results.");
+        }
+    });
+});
+
+$(document).ready(function()
+{
+    $("#cleanButton").on('click', function(e)
+    {
+        $('input[type="radio"]').prop('checked', '')
+        $("#tablediv").load("@Url.Action("DriversRadioButtonHandler","Admin")", { 'id' : ''},
+                                        function (response, status, xhr)
+        {
+            if (status == "error")
+            {
+                alert("An error occurred while loading the results.");
+            }
+        });
+    });
+});
+
+$(document).ready(function()
+{
+        var checkedRadioButtons = document.querySelectorAll('[checked]')
+        if (checkedRadioButtons[0].id == 'DriverStatus') {
+            checkedRadioButtons[0].click()
+            setTimeout(function () {
+                checkedRadioButtons[1].click()
+            }, 900)
+        }
+        else {
+            checkedRadioButtons[1].click()
+            setTimeout(function () {
+                checkedRadioButtons[0].click()
+            }, 900)
+        }
+});
+    @*//assign driver
+    $(document).ready(function()
+    {
+        setTimeout(function () {
+
+        var allAnchors = document.getElementsByTagName('a')
+
+        var allAnchorsArray = Array.from(allAnchors)
+
+        var assignButtons = allAnchorsArray.filter(function(element) {
+            return element.id != 'cleanButton' && element.innerText != ""
+        });
+
+            $(assignButtons).on('click', function(e) {
+
+               
+            var driverphone = $(e.target).parent().siblings()[0].innerText
+          
+            var checkedVehicleType = Array.from(document.querySelectorAll('[checked]')).filter(function (element) {
+            return element.id == 'VehicleType'
+            });
+
+            $("#tablediv").load("@Url.Action("AssignDriver","Admin")", { 'driverphone': driverphone, 'vehicletype': $(checkedVehicleType).val() },
+                                        function (response, status, xhr)
+            {
+                if (status == "error")
+                {
+                    alert("An error occurred while loading the results.");
+                }
+            });
+            })
+                
+        }, 500)
+
+});*@
+</script>

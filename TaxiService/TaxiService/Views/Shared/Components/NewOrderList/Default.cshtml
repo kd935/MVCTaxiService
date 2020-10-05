@@ -1,0 +1,35 @@
+﻿@model IEnumerable<NewOrder>
+
+<div class="table-responsive">
+<table class="drivers-table" style="width: 100%">
+    <thead>
+        <tr>
+            <th>Класс авто</th>
+            <th>Местоположение</th>
+            <th>Телефон</th>
+            <th>Удобства</th>
+            <th>Имя</th>
+            <th>Время заказа</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for ( int i = 0; i < Model.Count(); i++)
+        {
+        <tr>
+            <td class="align-text-bottom">@Model.ElementAt(i).SelectedVehicleType</td>
+            <td class="align-text-bottom">@Model.ElementAt(i).Location</td>
+            <td class="align-text-bottom">@Model.ElementAt(i).ClientPhoneNumber</td>
+            <td width="1" class="align-text-bottom">@Model.ElementAt(i).Comforts</td>
+            <td class="align-text-bottom">@Model.ElementAt(i).ClientName</td>
+            <td class="align-text-bottom">@Model.ElementAt(i).OrderDateTime</td>
+
+            <td class="d-flex flex-column">
+                <a asp-action="Drivers" asp-controller="Admin" asp-route-id="@i" class="clean-button btn btn-success mt-2">Принять</a>
+                <a asp-action="DeclineOrder" asp-controller="Admin" asp-route-id="@i" class="decline-button btn btn-danger mt-2">Отклонить</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+    </div>

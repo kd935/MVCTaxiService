@@ -1,0 +1,30 @@
+﻿@model LoginViewModel
+
+
+<div class="row min-vh-100 align-items-center login-page-area page-main-row">
+    <div class="col-4 offset-4 mb-5 px-0">
+
+        <form asp-action="Login" method="post" class="form-horizontal" role="form">
+            <div class="form-row d-flex flex-column">
+
+                <div class="form-group">
+                    <div class="logo-rectangle"></div>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-secondary"></div>
+                <span asp-validation-for="Email" class="text-secondary"></span>
+                <div class="form-group d-flex">
+                    <input class="flex-grow-1" style="height: 40px" asp-for="Email" type="text" placeholder="email" />
+                </div>
+
+                <span asp-validation-for="Password" class="text-secondary"></span>
+                <div class="form-group d-flex">
+                    <input class="flex-grow-1" style="height: 40px" asp-for="Password" type="password" placeholder="password" />
+                </div>
+
+                <div class="form-group d-flex">
+                    <a class="login-button flex-grow-1" href="#" onclick="$(this).closest('form').submit()">Войти</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

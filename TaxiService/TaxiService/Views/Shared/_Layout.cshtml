@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald:300&display=swap">
+    <script src="~/lib/jquery/jquery.js"></script>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <link href="~/Content/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+</head>
+<body>
+    <div class="container-fluid bg-warning min-vh-100 d-flex flex-column">
+        <div class="row flex-grow-1">
+            <div class="col-1 bg-dark px-0">
+                <ul class="nav flex-column align-items-center my-nav min-vh-100 justify-content-between">
+                    <li class="nav-item my-2 mt-3">
+                        <a class="ion-ios-home-outline nav-link" asp-controller="Home" asp-action="Index">
+                        </a>
+                    </li>
+                    <li class="nav-item mb-5">
+                        <a class="ion-log-in nav-link" asp-controller="Account" asp-action="Login">
+                        </a>
+                    </li>   
+                </ul>
+</div>
+            <div class="col-11">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

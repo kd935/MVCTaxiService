@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200302111841_TestMigration.cs" />
+    <Compile Remove="Migrations\20200302111841_TestMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200302112310_TestMigration.cs" />
+    <Compile Remove="Migrations\20200302112310_TestMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200302113757_TestMigration.cs" />
+    <Compile Remove="Migrations\20200302113757_TestMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200302114533_initial.cs" />
+    <Compile Remove="Migrations\20200302114533_initial.Designer.cs" />
+    <Compile Remove="Migrations\20200312224915_SequenceAdded.cs" />
+    <Compile Remove="Migrations\20200312224915_SequenceAdded.Designer.cs" />
+    <Compile Remove="Migrations\20200313093915_Seq.cs" />
+    <Compile Remove="Migrations\20200313093915_Seq.Designer.cs" />
+    <Compile Remove="Migrations\20200313094142_Seq.cs" />
+    <Compile Remove="Migrations\20200313094142_Seq.Designer.cs" />
+    <Compile Remove="Migrations\20200313094527_Sequence.cs" />
+    <Compile Remove="Migrations\20200313094527_Sequence.Designer.cs" />
+    <Compile Remove="Migrations\20200313094737_Sequence.cs" />
+    <Compile Remove="Migrations\20200313094737_Sequence.Designer.cs" />
+    <Compile Remove="Migrations\20200313100641_ValAdd.cs" />
+    <Compile Remove="Migrations\20200313100641_ValAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200313101100_ValAdd.cs" />
+    <Compile Remove="Migrations\20200313101100_ValAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200313101741_ValAdd.cs" />
+    <Compile Remove="Migrations\20200313101741_ValAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200313102001_ValAdd.cs" />
+    <Compile Remove="Migrations\20200313102001_ValAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200313103039_ValAdd.cs" />
+    <Compile Remove="Migrations\20200313103039_ValAdd.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+</Project>

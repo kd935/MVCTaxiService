@@ -1,0 +1,96 @@
+﻿@model DriversListViewModel
+
+    <div class="table-responsive">
+        <table class="drivers-table" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Номер водителя</th>
+                    <th>Местоположение</th>
+                    <th>Тип авто</th>
+                    <th>Статус</th>
+                    <th>Водитель заказан</th>
+                    @{
+                        var data = ViewData["AssignDriverMode"];
+
+                        @if (data != null && (bool)data == true)
+                        {
+                            <th></th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var driver in Model.Drivers)
+                {
+                    <tr>
+                        <td>@driver.DriverPhoneNumber</td>
+                        <td>@driver.Location.Location1</td>
+                        <td>@driver.Vehicle.VehicleType</td>
+                        <td>@driver.DriverStatus</td>
+                        <td class="d-flex flex-column px-0">
+
+                            <table class="drivers-table">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Время заказа</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var dat in driver.DriversAndTimes)
+                                    {
+                                        <tr>
+
+                                            <td>@Model.Times.First(t => t.Id == dat.TimeId).Time1</td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </td>
+                        @{
+                            @if (data != null && (bool)data == true)
+                            {
+                                <td>
+                                    <a class="clean-button btn btn-success">Назначить</a>
+                                </td>
+                            }
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+
+<script type="text/javascript">
+
+     //assign driver
+
+        var allAnchors = document.getElementsByTagName('a')
+
+        var allAnchorsArray = Array.from(allAnchors)
+
+        var assignButtons = allAnchorsArray.filter(function(element) {
+            return element.id != 'cleanButton' && element.innerText != ""
+        });
+
+            $(assignButtons).on('click', function(e) {
+
+               
+            var driverphone = $(e.target).parent().siblings()[0].innerText
+          
+            var checkedVehicleType = Array.from(document.querySelectorAll('[checked]')).filter(function (element) {
+            return element.id == 'VehicleType'
+            });
+
+            $("#tablediv").load("@Url.Action("AssignDriver","Admin")", { 'driverphone': driverphone, 'vehicletype': $(checkedVehicleType).val() },
+                                        function (response, status, xhr)
+            {
+                if (status == "error")
+                {
+                    alert("An error occurred while loading the results.");
+                }
+            });
+            })
+                
+</script>

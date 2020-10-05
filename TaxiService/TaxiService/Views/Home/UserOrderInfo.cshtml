@@ -1,0 +1,66 @@
+﻿@model PreOrderInfoViewModel
+
+    <div class="row min-vh-100 align-items-center page-main-row text-light">
+        <div class="col-6 offset-3 mb-5 px-0">
+
+            <form asp-controller="Home" asp-action="UserOrderInfo" method="post" class="form-horizontal" role="form">
+                <div class="order-form">
+                    <div class="form-row justify-content-center mx-0 mt-2 mb-3">
+                        <h5>
+                            <label>Информация о заказе</label>
+                        </h5>
+                    </div>
+
+                    <div class="form-row d-flex flex-column mx-0 ml-3">
+                        <div class="form-group">
+                            <label>Выбранный тип авто:</label>
+                            <label asp-for="SelectedVehicleType" class="border border-success rounded">@Model.SelectedVehicleType</label>
+                            <input type="hidden" asp-for="SelectedVehicleType" />
+                        </div>
+                        <div class="form-group">
+                            <label>Выбранные удобства:</label>
+                            <label class="border border-success rounded">@(String.IsNullOrEmpty(Model.Comforts) ? "" : Model.Comforts)</label>
+                            <input type="hidden" asp-for="Comforts" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ваше имя:</label>
+                            <input asp-for="ClientName" type="text" placeholder="Константин" />
+                            <span asp-validation-for="ClientName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ваш номер:</label>
+                            <input asp-for="ClientPhoneNumber" type="tel" placeholder="380994382833" />
+                            <span asp-validation-for="ClientPhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ваше местоположение:</label>
+                            <input asp-for="Location" type="text" placeholder="улица Бакулина, 10" />
+                            <span asp-validation-for="Location" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Выберите дату и время:</label>
+                            <input asp-for="OrderDateTime" type="datetime-local" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                            <span asp-validation-for="OrderDateTime" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row justify-content-end align-items-start mx-0 mr-3">
+                        <div class="form-group mb-0">
+                            <h5>
+                                <label>Минимальная итоговая цена:</label>
+                                <label asp-for="MinimalPrice">@Model.MinimalPrice</label>
+                                <input type="hidden" asp-for="MinimalPrice" />
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mx-0 mt-4 d-flex">
+                    <a class="order-btn flex-grow-1" style="border-radius: 10px" href="#" onclick="$(this).closest('form').submit()">Подтвердить заказ</a>
+                </div>
+            </form>
+        </div>
+    </div>

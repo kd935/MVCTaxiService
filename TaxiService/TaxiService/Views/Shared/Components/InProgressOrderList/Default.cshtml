@@ -1,0 +1,146 @@
+﻿@model IEnumerable<Order>
+
+<div class="table-responsive">
+    <table class="orders-table" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Номер заказа</th>
+                <th>Номер водителя</th>
+                <th>Номер клиента</th>
+                <th>Местоположение заказа</th>
+                <th>Удобства</th>
+                <th>Минимальная цена</th>
+                <th>Время заказа</th>
+                <th>Статус заказа</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                if (ViewData["OrderId"] != null && (int)ViewData["OrderId"] == Model.ElementAt(i).Id)
+                {
+                    <tr style="background-color: saddlebrown">
+                        <td class="align-text-bottom">
+                            @Model.ElementAt(i).Id
+                            <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
+                        </td>
+                        <td class="align-text-bottom">
+                            @Model.ElementAt(i).DriverPhoneNumber
+                            <input type="hidden" asp-for="@Model.ElementAt(i).DriverPhoneNumber" />
+                        </td>
+                        <td class="align-text-bottom">
+                            @Model.ElementAt(i).ClientPhoneNumber
+                            <input type="hidden" asp-for="@Model.ElementAt(i).ClientPhoneNumber" />
+                        </td>
+                        <td class="align-text-bottom">
+                            <input type="text" asp-for="@Model.ElementAt(i).Location.Location1" />
+                        </td>
+                        <td class="align-text-bottom">
+                            <input type="text" asp-for="@Model.ElementAt(i).Comforts" />
+                        </td>
+                        <td class="align-text-bottom">
+                            <input type="text" asp-for="@Model.ElementAt(i).MinimalPrice" />
+                        </td>
+                        <td class="align-text-bottom">
+                            <input type="datetime-local" asp-for="@Model.ElementAt(i).OrderTime.Time1" />
+                        </td>
+                        <td class="align-text-bottom">
+                            <select asp-for="@Model.ElementAt(i).OrderStatus" asp-items="@(new SelectList(new List<string> {"В процессе", "Выполнен", "Отменён"}))">
+                            </select>
+                        </td>
+
+                        <td class="d-flex flex-column">
+                            <a class="edit-button btn btn-warning mt-2">Обновить</a>
+                            <a class="edit-button btn btn-warning mt-2">Отмена</a>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td class="align-text-bottom">@Model.ElementAt(i).Id</td>
+                        <td class="align-text-bottom">@Model.ElementAt(i).DriverPhoneNumber</td>
+                        <td class="align-text-bottom">@Model.ElementAt(i).ClientPhoneNumber</td>
+                        <td class="align-text-bottom">@Model.ElementAt(i).Location.Location1</td>
+                        <td width="1" class="align-text-bottom">@Model.ElementAt(i).Comforts</td>
+                        <td class="align-text-bottom">@Model.ElementAt(i).MinimalPrice</td>
+                        <td class="align-text-bottom">@Model.ElementAt(i).OrderTime.Time1</td>
+                        <td class="align-text-bottom">@Model.ElementAt(i).OrderStatus</td>
+
+                        <td class="d-flex flex-column">
+                            <a href="#" class="edit-button btn btn-warning mt-2">Править</a>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+        var allAnchors = document.getElementsByTagName('a')
+
+        var allAnchorsArray = Array.from(allAnchors)
+
+        var editButtons = allAnchorsArray.filter(function (element) {
+            return element.innerText == "Править"
+        });
+
+        var updateButton = allAnchorsArray.filter(function (element) {
+            return element.innerText == "Обновить"
+        });
+
+        var cancelButton = allAnchorsArray.filter(function (element) {
+            return element.innerText == "Отмена"
+        });
+
+
+        $(editButtons).on('click', function (e) {
+
+            var orderId = $(e.target).parent().siblings()[0].innerText
+
+
+            $("#tablediv").load("@Url.Action("EditOrder","Admin")", { 'orderId': orderId },
+                function (response, status, xhr) {
+                    if (status == "error") {
+                        alert("An error occurred while loading the results.");
+                    }
+                });
+        })
+
+        $(updateButton).on('click', function (e) {
+
+            var orderid = $($('#Id').get(0)).val()
+            var location = $($('#Location_Location1').get(0)).val()
+                var comforts = $($('#Comforts').get(0)).val()
+                var minimalprice = $($('#MinimalPrice').get(0)).val()
+                var ordertime = $($('#OrderTime_Time1').get(0)).val()
+                var orderstatus = $('select').val()
+
+
+            $("#tablediv").load("@Url.Action("UpdateOrder","Admin")", { 'orderid':orderid, 'location': location, 'comforts':comforts, 'minimalprice':minimalprice, 'ordertime':ordertime, 'orderstatus':orderstatus},
+                                        function (response, status, xhr)
+                {
+                    if (status == "error")
+                    {
+                        alert("An error occurred while loading the results.");
+                    }
+                });
+        })
+
+        $(cancelButton).on('click', function (e) {
+
+             $("#tablediv").load("@Url.Action("IndexRadioButtonHandler","Admin")", { 'id' : 'В процессе'},
+                                        function (response, status, xhr)
+                {
+                    if (status == "error")
+                    {
+                        alert("An error occurred while loading the results.");
+                    }
+                });
+        })
+
+</script>

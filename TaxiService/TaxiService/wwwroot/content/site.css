@@ -1,0 +1,249 @@
+﻿
+html, body {
+    height: 100%;
+}
+
+@media screen and (min-width: 576px) {
+
+    .ion-ios-home-outline {
+        font-size: 20px;
+        color: #2ecc71;
+        border: 1px solid #2ecc71;
+        border-radius: 10px;
+        padding: 5px 10px;
+    }
+    .ion-ios-people-outline {
+        font-size: 20px;
+        color: #2ecc71;
+        border: 1px solid #2ecc71;
+        border-radius: 10px;
+        padding: 5px 10px;
+    }
+}
+@media screen and (min-width: 768px){
+    .ion-ios-home-outline {
+        font-size: 40px;
+        color: #2ecc71;
+        border: 1px solid #2ecc71;
+        border-radius: 15px;
+        padding: 10px 15px;
+    }
+    .ion-ios-people-outline {
+        font-size: 40px;
+        color: #2ecc71;
+        border: 1px solid #2ecc71;
+        border-radius: 15px;
+        padding: 10px 15px;
+    }
+}
+    .ion-ios-home-outline:hover {
+        color: #2d3436;
+        background-color: #2ecc71;
+    }
+    .ion-ios-people-outline:hover {
+        color: #2d3436;
+        background-color: #2ecc71;
+    }
+
+@media screen and (min-width: 576px) {
+    .ion-log-in {
+        font-size: 20px;
+        color: #2ecc71;
+        border: 1px solid #2ecc71;
+        border-radius: 10px;
+        padding: 5px 10px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .ion-log-in {
+        font-size: 40px;
+        color: #2ecc71;
+        border: 1px solid #2ecc71;
+        border-radius: 15px;
+        padding: 10px 15px;
+    }
+}
+    .ion-log-in:hover {
+        color: #2d3436;
+        background-color: #2ecc71;
+    }
+
+.my-nav {
+    background-color: #23282a;
+    border-right: 1px groove #2ecc71;
+    z-index: 3;
+}
+
+.page-main-row {
+    background-color: #2d3436;
+}
+
+
+.order-btn {
+    border: 3px solid #2ecc71;
+    font-size: 20px;
+    color: #2ecc71;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 60px;
+    position: relative;
+    transition: .5s;
+    overflow: hidden;
+    z-index: 3;
+}
+
+    .order-btn::before, .order-btn::after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: #2ecc71;
+        top: 0;
+        left: -100%;
+        opacity: .5;
+        transition: .3s;
+        z-index: -1;
+    }
+
+    .order-btn::after {
+        opacity: 1;
+        transition-delay: .2s;
+    }
+
+    .order-btn:hover {
+        color: #2d3436;
+        text-decoration: none;
+    }
+
+    .order-btn:hover::before, .order-btn:hover::after {
+            left: 0;
+    }
+
+.check-boxes-wrap {
+    background-color: #23282a;
+    border: 1px groove #2ecc71;
+    box-shadow: #23282a 10px 10px;
+    color: #2ecc71;
+}
+
+.CheckBoxesList {
+    list-style: none;
+    font-size: 24px;
+}
+
+    .CheckBoxesList li {
+        padding: 8px;
+        color: #2ecc71;
+    }
+
+
+.order-form {
+    border: 1px groove #2ecc71;
+    box-shadow: inset 0 0 20px 0 #2ecc71;
+    background-color: #23282a;
+    border-radius: 10px;
+    color: #2ecc71;
+}
+
+.logo-rectangle {
+    /*width: 400px;*/
+    height: 200px;
+    background: radial-gradient(#97dd88,#59C941);
+}
+
+.login-button {
+    font-size: 16px;
+    color: white;
+    background-color: #59C941;
+    text-decoration: none;
+    text-align: center;
+    line-height: 35px;
+    font-family: 'Times New Roman';
+}
+
+    .login-button:hover {
+        background-color: #75d260;
+        text-decoration: none;
+        color: white;
+    }
+
+    .login-button:active {
+        background-color: #3a8b27;
+        box-shadow: inset 0 0 20px 1px #193c11;
+        text-decoration: none;
+        color: white;
+    }
+
+.login-page-area {
+    background-image: url(../images/black_and_green_taxi.png);
+    background-size: 1450px;
+    background-repeat: no-repeat;
+    z-index: 3;
+}
+
+.clean-button {
+    color: #2d3436;
+    background-color: #4ebd36;
+    border-color: #4ebd36;
+    font-weight: 600;
+}
+
+.decline-button {
+    color: #2d3436;
+    font-weight: 600;
+}
+
+.edit-button {
+    color: #2d3436;
+}
+
+a:not([href]) {
+    color: #2d3436;
+}
+
+.radio-buttons-wrap {
+    background-color: #4ebd36;
+    border-radius: 5px;
+    color: #2d3436;
+    font-weight: 600;
+}
+
+.drivers-table {
+    color: #E9E9E9;
+    font-weight: 400;
+}
+    .drivers-table tr:nth-child(even) {
+        background-color: #2d3436;
+    }
+    .drivers-table tr:nth-child(odd) {
+        background-color: #23282a;
+    }
+    .drivers-table th {
+        background-color: #4ebd36;
+        font-weight: 400;
+    }
+
+.orders-table {
+    color: #E9E9E9;
+    font-weight: 400;
+}
+
+    .orders-table tr:nth-child(even) {
+        background-color: #2d3436;
+    }
+
+    .orders-table tr:nth-child(odd) {
+        background-color: #23282a;
+    }
+
+    .orders-table th {
+        background-color: #4ebd36;
+        font-weight: 400;
+    }
+    .orders-table tr:nth-child(even) td {
+        border-right: 1px solid #23282a;
+    }
+    .orders-table tr:nth-child(odd) td {
+        border-right: 1px solid #2d3436;
+    }

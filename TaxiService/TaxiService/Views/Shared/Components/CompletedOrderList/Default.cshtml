@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Order>
+
+<div class="table-responsive">
+    <table class="orders-table" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Номер заказа</th>
+                <th>Номер водителя</th>
+                <th>Номер клиента</th>
+                <th>Местоположение заказа</th>
+                <th>Удобства</th>
+                <th>Минимальная цена</th>
+                <th>Время заказа</th>
+                <th>Статус заказа</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                    <tr>
+                        <td class="align-text-bottom">@Model.ElementAt(i).Id</td>
+                        <td class="align-text-bottom">@Model.ElementAt(i).DriverPhoneNumber</td>
+                        <td class="align-text-bottom">@Model.ElementAt(i).ClientPhoneNumber</td>
+                        <td class="align-text-bottom">@Model.ElementAt(i).Location.Location1</td>
+                        <td width="1" class="align-text-bottom">@Model.ElementAt(i).Comforts</td>
+                        <td class="align-text-bottom">@Model.ElementAt(i).MinimalPrice</td>
+                        <td class="align-text-bottom">@Model.ElementAt(i).OrderTime.Time1</td>
+                        <td class="align-text-bottom">@Model.ElementAt(i).OrderStatus</td>
+                    </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,46 @@
+﻿@model AdminIndexViewModel
+
+<div class="row min-vh-100 page-main-row text-light">
+    <div class="col-10 offset-1 mt-5 px-0">
+
+        <div class="row mx-0 d-flex flex-column" style="border: 2px solid #23282a; border-radius:3px">
+            <div class="radio-buttons-wrap px-0 d-flex">
+
+                @foreach (var orderStatus in Model.OrderStatuses)
+                {
+                    <div class="flex-fill d-flex justify-content-center align-items-center">
+                        <input type="radio" asp-for="OrderStatus" value="@orderStatus" />@orderStatus<br />
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div id="tablediv" class="row mt-3 mx-0 d-flex flex-column min-vh-100"></div>
+    </div>
+</div>
+
+@Html.Raw(@TempData.Get<string>("alertMessage"))
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+    $('input[type="radio"]').on('click', function(e)
+    {
+        var value = e.target.getAttribute('value')
+        $("#tablediv").load("@Url.Action("IndexRadioButtonHandler","Admin")", { 'id' : value},
+                                        function (response, status, xhr)
+        {
+            if (status == "error")
+            {
+                alert("An error occurred while loading the results.");
+            }
+        });
+    });
+});
+
+$(document).ready(function()
+{
+        var checkedRadioButtons = document.querySelectorAll('[checked]')
+        checkedRadioButtons[0].click()
+});
+</script>

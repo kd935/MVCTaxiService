@@ -1,0 +1,12 @@
+﻿@inject SignInManager<IdentityUser> signInManager
+
+@{
+    if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+        Layout = "_LayoutAdmin";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
